@@ -1,0 +1,222 @@
+/* ==========================================================
+   Centavo — estilos globais
+   Aqui ficam as variáveis de cor, o "reset" e as classes
+   compartilhadas (painel, botões, campos, mensagens).
+   Estilos específicos de cada componente ficam dentro do
+   próprio .vue, em <style scoped>.
+   ========================================================== */
+
+/* ---------- Variáveis (tema claro) ---------- */
+:root {
+  --cor-fundo: #f3f6f5;
+  --cor-superficie: #ffffff;
+  --cor-superficie-suave: #eaf0ee;
+  --cor-borda: #d5dfdc;
+  --cor-texto: #1c2a27;
+  --cor-texto-suave: #55665f;
+
+  --cor-primaria: #0f766e;
+  --cor-primaria-hover: #0b5a54;
+  --cor-primaria-clara: #d3eeea;
+  --cor-sobre-primaria: #ffffff;
+
+  --cor-receita: #15803d;
+  --cor-receita-fundo: #dcf5e4;
+  --cor-despesa: #b91c1c;
+  --cor-despesa-fundo: #fde6e6;
+
+  --sombra: 0 1px 2px rgba(16, 42, 38, 0.06), 0 6px 18px rgba(16, 42, 38, 0.06);
+  --raio: 14px;
+  --raio-pequeno: 9px;
+}
+
+/* ---------- Variáveis (tema escuro automático) ---------- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --cor-fundo: #0d1715;
+    --cor-superficie: #15231f;
+    --cor-superficie-suave: #1d2f2a;
+    --cor-borda: #2b413b;
+    --cor-texto: #e7f1ee;
+    --cor-texto-suave: #9bb4ac;
+
+    --cor-primaria: #2dd4bf;
+    --cor-primaria-hover: #5eead4;
+    --cor-primaria-clara: #17403b;
+    --cor-sobre-primaria: #06302b;
+
+    --cor-receita: #4ade80;
+    --cor-receita-fundo: #153a26;
+    --cor-despesa: #f87171;
+    --cor-despesa-fundo: #3f1d1d;
+
+    --sombra: 0 1px 2px rgba(0, 0, 0, 0.4), 0 6px 18px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* ---------- Reset básico ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--cor-texto);
+  background: var(--cor-fundo);
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--cor-primaria);
+  outline-offset: 2px;
+}
+
+/* ---------- Painel (caixa branca usada nas seções) ---------- */
+.painel {
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  padding: 20px;
+  box-shadow: var(--sombra);
+}
+
+.painel-titulo {
+  font-size: 1.1rem;
+  margin-bottom: 14px;
+}
+
+/* ---------- Campos de formulário ---------- */
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.rotulo {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--cor-texto-suave);
+}
+
+.entrada {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-pequeno);
+  background: var(--cor-superficie);
+  color: var(--cor-texto);
+  font-size: 1rem;
+}
+
+.entrada::placeholder {
+  color: var(--cor-texto-suave);
+  opacity: 0.7;
+}
+
+.entrada:focus-visible {
+  outline: 3px solid var(--cor-primaria-clara);
+  outline-offset: 0;
+  border-color: var(--cor-primaria);
+}
+
+/* ---------- Botões ---------- */
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 18px;
+  border: 1px solid transparent;
+  border-radius: var(--raio-pequeno);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s, transform 0.05s;
+}
+
+.botao:active {
+  transform: translateY(1px);
+}
+
+.botao-primario {
+  background: var(--cor-primaria);
+  color: var(--cor-sobre-primaria);
+}
+
+.botao-primario:hover {
+  background: var(--cor-primaria-hover);
+}
+
+.botao-claro {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+}
+
+.botao-claro:hover {
+  background: rgba(255, 255, 255, 0.26);
+}
+
+.botao-claro:focus-visible {
+  outline-color: #ffffff;
+}
+
+.botao-texto {
+  padding: 4px 8px;
+  border: none;
+  border-radius: 6px;
+  background: none;
+  color: var(--cor-primaria);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.botao-texto:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Mensagens de erro / sucesso ---------- */
+.mensagem {
+  padding: 10px 12px;
+  border-radius: var(--raio-pequeno);
+  font-size: 0.92rem;
+  font-weight: 500;
+}
+
+.mensagem.erro {
+  background: var(--cor-despesa-fundo);
+  color: var(--cor-despesa);
+}
+
+.mensagem.sucesso {
+  background: var(--cor-receita-fundo);
+  color: var(--cor-receita);
+}
+
+/* ---------- Respeita quem prefere menos animação ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
